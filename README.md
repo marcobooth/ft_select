@@ -4,10 +4,10 @@ Project start date: 26th April 2015
 Authorised Function:
 
 - isatty
-• ttyname
-• ttyslot
-• ioctl
-• getenv
+- ttyname
+- ttyslot
+- ioctl
+- getenv
 • tcsetattr
 • tcgetattr
 • tgetent
