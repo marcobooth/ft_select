@@ -3,7 +3,7 @@ Project start date: 26th April 2015
 
 Authorised Function:
 
--- isatty
+- isatty
 • ttyname
 • ttyslot
 • ioctl
