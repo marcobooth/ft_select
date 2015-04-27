@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/04/27 13:58:00 by tfleming         ###   ########.fr        #
+#    Updated: 2015/04/27 16:05:56 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,14 +21,13 @@ LIBFT =         	libft
 LIBFT_INCLUDES =	$(LIBFT)/includes
 
 INC_FLAGS =         -I $(INCLUDES) -I $(LIBFT_INCLUDES)
-LIB_FLAGS =         -L $(LIBFT) -lft
+LIB_FLAGS =         -L $(LIBFT) -lft -ltermcap
 
 COMPILED =			main.o
 
 all: $(NAME)
 
 $(NAME): $(COMPILED)
-	@make -C $(MLX)
 	@make -C $(LIBFT)
 	@$(CC) $(CFLAGS) -o $(NAME) $(LIB_FLAGS) $(COMPILED)
 	@echo "made" $(NAME)
