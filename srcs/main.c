@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 16:58:37 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/27 17:37:14 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ t_environment		*get_set_environment(t_environment *new_env)
 	return (stored_env);
 }
 
+void				clear_screen_cursor_home()
+{
+	char			buffer[30];
+	char			*buffer_right_type;
+	char			*clear_screen_command;
+	
+	buffer_right_type = (char*)buffer;
+	clear_screen_command = tgetstr("cl", &buffer_right_type);
+	ft_putstr(clear_screen_command);
+}
+
 void				set_window_size()
 {
 	t_environment	*env;
@@ -50,7 +61,11 @@ void				set_window_size()
 	env = get_set_environment(NULL);
 	env->column_width = window.ws_row;
 	env->column_height = window.ws_col;
-	printf("row: %i \n colums:%i \n", env->column_width, env->column_height);
+
+	clear_screen_cursor_home();
+	
+	printf("row: %i\ncolums:%i \n", env->column_width, env->column_height);
+	
 }
 
 int					main(int argc, char **argv)

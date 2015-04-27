@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 16:56:51 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/27 17:40:55 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@
 ** isatty
 ** ttyname
 ** ttyslot
-** ioctl
+** ioctl (gets struct winsize, column width and column height)
 ** getenv
 ** tcsetattr
 ** tcgetattr
-** tgetent
+** tgetent (do this before doing the other t* commands -- sets the TERM)
 ** tgetflag
 ** tgetnum
-** tgetstr
+** tgetstr (gets string to do termcaps command)
 ** tgoto
 ** tputs
 ** open
@@ -40,7 +40,7 @@
 
 /*
 ** termios.h :: tc[get/set]attr
-** term.h :: tgetent
+** term.h :: tgetent, tgetstr
 ** ioctl.h :: ioctl
 */
 
