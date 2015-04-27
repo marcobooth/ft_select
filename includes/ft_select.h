@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 17:40:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/27 21:29:14 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,22 @@
 */
 
 # include "libft.h"
+# include "ft_list.h"
+# include "ft_printf.h"
 # include <termios.h>
 # include <term.h>
 # include <sys/ioctl.h>
 
 typedef struct		s_environment
 {
-	int				column_width;
-	int				column_height;
-	
+	int				width;
+	int				height;
+	char			**words;
+	int				words_count;
 }					t_environment;
 
 int					main(int argc, char **argv);
+void				print_words();
+t_environment		*get_set_environment(t_environment *new_env);
 
 #endif

@@ -6,83 +6,56 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 17:37:14 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/27 20:54:36 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-#include <stdio.h>
 
-void				see_touch()
+void				wait_for_keypress()
 {
 	char			buffer[3];
 
 	while (1)
 	{
 		read(0, buffer, 3);
+		// will not show up
 		if (buffer[0] == 27)
-			printf("it's an arrow\n");
+			ft_printf("it's an arrow\n");
 		else if (buffer[0] == 4)
-			printf("control+D\n");
+			ft_printf("control+D\n");
 		else
-			printf("other something\n");
-		printf("\n");
+			ft_printf("other something\n");
+		ft_printf("\n");
+		print_words();
 	}
 }
 
-t_environment		*get_set_environment(t_environment *new_env)
+static void			set_signals(void)
 {
-	static t_environment	*stored_env = NULL;
-	
-	if (new_env)
-	{
-		stored_env = new_env;
-	}
-	return (stored_env);
+	signal(SIGWINCH, print_words);
 }
 
-void				clear_screen_cursor_home()
+static void			setup_terminal(void)
 {
-	char			buffer[30];
-	char			*buffer_right_type;
-	char			*clear_screen_command;
-	
-	buffer_right_type = (char*)buffer;
-	clear_screen_command = tgetstr("cl", &buffer_right_type);
-	ft_putstr(clear_screen_command);
-}
+	char			*terminal_name;
 
-void				set_window_size()
-{
-	t_environment	*env;
-	struct winsize	window;
-
-	ioctl(0, TIOCGWINSZ, &window);
-	env = get_set_environment(NULL);
-	env->column_width = window.ws_row;
-	env->column_height = window.ws_col;
-
-	clear_screen_cursor_home();
-	
-	printf("row: %i\ncolums:%i \n", env->column_width, env->column_height);
-	
+	if (!(terminal_name = getenv("TERM")))
+	 	ft_putendl_exit("Error getting env->TERM", 1);
+	tgetent(NULL, terminal_name);
 }
 
 int					main(int argc, char **argv)
 {
 	t_environment	*env;
 
-	signal(SIGWINCH, set_window_size);
+	setup_terminal();
 	env = malloc(sizeof(t_environment));
+	env->words = argv + 1;
+	env->words_count = argc - 1;
 	get_set_environment(env);
-	char			*terminal_name;
-
-	if (!(terminal_name = getenv("TERM")))
-	 	return (-1);
-	tgetent(NULL, terminal_name); // no error check because ERR not defined
-	// put stuff into term
-	see_touch();
-	(void)argc;
-	(void)argv;
+	set_signals();
+	print_words();
+	wait_for_keypress();		
 	return (0);
 }

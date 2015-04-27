@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/03/26 16:51:04 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/27 20:21:53 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,9 @@ void				ft_putstr_fd(char const *source, int file_descriptor);
 void				ft_putstr_literal_fd(char const *source
 											, int file_descriptor);
 void				ft_putstr_justify_right(char *string
+											, size_t total
+											, char fill);
+void				ft_putstr_justify_left(char *string
 											, size_t total
 											, char fill);
 void				ft_putstrn(char const *source, size_t max_length);

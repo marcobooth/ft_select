@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/04/22 14:08:06 by tfleming         ###   ########.fr        #
+#    Updated: 2015/04/27 20:22:01 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -93,6 +93,7 @@ FT_COMPILED =		ft_islower.o \
 					ft_putstr.o \
 					ft_putstr_literal_fd.o \
 					ft_putstr_justify_right.o \
+					ft_putstr_justify_left.o \
 					ft_putstrn.o \
 					ft_putendl_exit.o \
 					ft_putendl.o \
@@ -129,7 +130,7 @@ FT_LIST_COMPILED =	ft_list_create_elem.o \
 					ft_list_last.o \
 					ft_list_push_back.o \
 					ft_list_push_front.o \
-					ft_list_push_params.o \
+					ft_list_from_array.o \
 					ft_list_remove_if.o \
 					ft_list_remove_node.o \
 					ft_list_reverse.o \
