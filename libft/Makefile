@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/04/27 20:22:01 by tfleming         ###   ########.fr        #
+#    Updated: 2015/04/28 14:35:58 by mbooth           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -114,6 +114,7 @@ FT_COMPILED =		ft_islower.o \
 					ft_array_expand.o \
 					ft_array_reverse.o \
 					ft_quicksort.o \
+					ft_remove_nth_from_array.o \
 					ft_min.o \
 					ft_min_umax.o \
 					ft_max.o \

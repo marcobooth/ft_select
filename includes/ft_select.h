@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/28 11:49:21 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 20:16:02 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,25 @@
 # include <term.h>
 # include <sys/ioctl.h>
 
+# define KEY_ESCAPE 0x1b
+# define KEY_SPACE 0x20
+# define KEY_UP 0x415b1b
+# define KEY_DOWN 0x425b1b
+# define KEY_RIGHT 0x435b1b
+# define KEY_LEFT 0x445b1b
+# define KEY_ENTER 0xa
+# define KEY_BACKSPACE 0x7f
+# define KEY_DELETE 0x7e335b1b
+
 typedef struct		s_environment
 {
 	int				width;
 	int				height;
 	char			**words;
 	int				words_count;
+	struct termios  term;
+	int				*highlighted;
+	int				current_argument;
 }					t_environment;
 
 int					main(int argc, char **argv);

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 18:21:19 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/28 11:53:43 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 21:32:01 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ static int			get_longest_word_length(t_environment *env)
 	while (i < env->words_count)
 	{
 		current_length = ft_strlen((char*)env->words[i]);
-		if (current_length > longest_word_length)
+			if (current_length > longest_word_length)
 			longest_word_length = current_length;
 		i++;
-	}
+		}
 	return (longest_word_length);
 }
 
@@ -48,7 +48,6 @@ static int			will_fit_on_screen(t_environment *env
 {
 	int				number_of_columns;
 
-	ft_printf("env width, height = %d, %d\n", env->width, env->height);
 	number_of_columns = env->words_count / env->height + 1;
 	return ((number_of_columns * single_width) < env->width);
 }
@@ -63,13 +62,21 @@ static void			actually_print(t_environment *env
 	row = 0;
 	while (row < env->height && row < env->words_count)
 	{
-		if (row != 0)
-			ft_putstr("\n");
+		ft_putstr(tgoto(tgetstr("cm", NULL), 0, row)); // what is this for?
+		ft_putstr(tgetstr("ce", NULL));
 		column = 0;
 		while (((current = (env->height * column) + row))
 											< env->words_count)
 		{
+			if (env->highlighted[current] == 1)
+				ft_putstr(tgetstr("so", NULL));
+			if (env->current_argument == current)
+				ft_putstr(tgetstr("us", NULL));
 			ft_putstr(env->words[current]);
+			if (env->current_argument == current)
+				ft_putstr(tgetstr("ue", NULL));
+		  if (env->highlighted[current] == 1)
+			  ft_putstr(tgetstr("se", NULL));
 			ft_putcharn(' ', single_width
 								- ft_strlen(env->words[current]));
 			column++;
@@ -84,14 +91,10 @@ void				print_words()
 	t_environment	*env;
 	int				single_width;
 
-	ft_printf("beginning of print_words\n");
 	env = get_set_environment(NULL);
 	set_window_size(env);
-	ft_printf("before clearing from screen\n");
 	clear_screen_from_text(env);
-	ft_printf("after clearing from screen\n");
 	single_width = get_longest_word_length(env) + 2;
-	ft_printf("before actually printing\n");
 	if (will_fit_on_screen(env, single_width))
 		actually_print(env, single_width);
 	else

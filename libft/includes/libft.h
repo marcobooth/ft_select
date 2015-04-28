@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 20:21:53 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 14:44:15 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,7 @@ void				ft_array_expand(size_t bytes_before, size_t bytes_after
 										, void **data);
 void				ft_quicksort(int length, int *array);
 void				ft_array_reverse(size_t length, int *array);
+void				ft_remove_nth_from_array(int nth, void **array, int *length);
 
 /*
 ** other
