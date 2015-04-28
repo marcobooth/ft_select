@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 21:29:14 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 11:49:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct		s_environment
 
 int					main(int argc, char **argv);
 void				print_words();
+void				clear_screen_from_text(t_environment *env);
 t_environment		*get_set_environment(t_environment *new_env);
 
 #endif

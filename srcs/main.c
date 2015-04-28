@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 20:54:36 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 11:51:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int					main(int argc, char **argv)
 {
 	t_environment	*env;
 
+	if (argc < 2)
+		return (-1);
 	setup_terminal();
 	env = malloc(sizeof(t_environment));
 	env->words = argv + 1;

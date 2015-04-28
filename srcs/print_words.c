@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 18:21:19 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/27 21:46:36 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/28 11:53:43 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,6 @@ static void			set_window_size(t_environment *env)
 	ioctl(0, TIOCGWINSZ, &window);
 	env->width = window.ws_col;
 	env->height = window.ws_row;
-}
-
-static void			clear_screen_()
-{
-	char			buffer[30];
-	char			*buffer_right_type;
-	char			*clear_screen_command;
-
-	buffer_right_type = (char*)buffer;
-	clear_screen_command = tgetstr("cm", &buffer_right_type);
-	clear_each_line()
-	ft_putstr(clear_screen_command);
 }
 
 static int			get_longest_word_length(t_environment *env)
@@ -60,6 +48,7 @@ static int			will_fit_on_screen(t_environment *env
 {
 	int				number_of_columns;
 
+	ft_printf("env width, height = %d, %d\n", env->width, env->height);
 	number_of_columns = env->words_count / env->height + 1;
 	return ((number_of_columns * single_width) < env->width);
 }
@@ -95,10 +84,14 @@ void				print_words()
 	t_environment	*env;
 	int				single_width;
 
+	ft_printf("beginning of print_words\n");
 	env = get_set_environment(NULL);
 	set_window_size(env);
-	clear_screen_cursor_home();
+	ft_printf("before clearing from screen\n");
+	clear_screen_from_text(env);
+	ft_printf("after clearing from screen\n");
 	single_width = get_longest_word_length(env) + 2;
+	ft_printf("before actually printing\n");
 	if (will_fit_on_screen(env, single_width))
 		actually_print(env, single_width);
 	else
