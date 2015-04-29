@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 15:12:42 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:37:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 19:20:13 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void			return_highlighted_words(t_environment *env)
 	int				i;
 	int				print_space_p;
 
-	/* clear_screen_from_text(env); */
+	clear_screen_from_text(env);
+	ft_putstr(tgetstr("cl", NULL));
 	print_space_p = 0;
 	i = 0;
 	while (i < env->word_count)
@@ -31,5 +32,6 @@ void			return_highlighted_words(t_environment *env)
 		}
 		i++;
 	}
+	ft_putstr(tgetstr("ve", NULL));
 	exit(0);
 }

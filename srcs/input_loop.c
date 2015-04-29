@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:26:31 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 19:15:27 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void				input_loop()
 	while (keycode = 0, (read(0, &keycode, 6)) != 0)
 	{
 		should_refresh = 1;
-		if (keycode == KEY_BACKSPACE)
+		if (keycode == KEY_BACKSPACE || keycode == KEY_DELETE)
 			remove_selected(env);
 		else if (keycode == KEY_SPACE)
 			select_deselect(env);
@@ -78,6 +78,8 @@ void				input_loop()
 		else if (keycode == KEY_DOWN || keycode == KEY_UP
 				 || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 			handle_arrow_key(env, keycode);
+		else if (keycode == KEY_ESCAPE)
+			abort_exit(0);
 		else
 			should_refresh = 0;
 		if (should_refresh)

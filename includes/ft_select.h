@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:44:20 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 19:42:15 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void				clear_screen_from_text(t_environment *env);
 void				print_words(t_environment *env
 								, int single_column_width);
 void				return_highlighted_words(t_environment *env);
+void				restart();
 
 /*
 ** hack to store the environment somewhere
@@ -96,5 +97,6 @@ void				return_highlighted_words(t_environment *env);
 */
 
 t_environment		*get_set_environment(t_environment *new_env);
+void				abort_exit(int signum);
 
 #endif
