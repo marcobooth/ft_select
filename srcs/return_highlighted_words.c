@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 15:12:42 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:15:50 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:34:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ void			return_highlighted_words(t_environment *env)
 			ft_putstr(env->words[i]);
 			print_space_p = 1;
 		}
+		i++;
 	}
+	exit(0);
 }
