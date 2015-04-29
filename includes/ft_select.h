@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/28 20:16:02 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/04/29 12:18:21 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 /*
 ** termios.h :: tc[get/set]attr
-** term.h :: tgetent, tgetstr
+** term.h :: tgetent, tgetstr, etc.
 ** ioctl.h :: ioctl
 */
 
@@ -51,30 +51,50 @@
 # include <term.h>
 # include <sys/ioctl.h>
 
-# define KEY_ESCAPE 0x1b
+# define KEY_ESCAPE 0x1B
 # define KEY_SPACE 0x20
-# define KEY_UP 0x415b1b
-# define KEY_DOWN 0x425b1b
-# define KEY_RIGHT 0x435b1b
-# define KEY_LEFT 0x445b1b
-# define KEY_ENTER 0xa
-# define KEY_BACKSPACE 0x7f
-# define KEY_DELETE 0x7e335b1b
+# define KEY_UP 0x415B1B
+# define KEY_DOWN 0x425B1B
+# define KEY_RIGHT 0x435B1B
+# define KEY_LEFT 0x445B1B
+# define KEY_ENTER 0xA
+# define KEY_BACKSPACE 0x7F
+# define KEY_DELETE 0x7E335B1B
+
+/*
+** width, height: size of terminal currently
+** words: the strings
+** words_count: number of strings
+** highlighted_p: is highlighted_p[x] = if words[x] is highlighted
+** current_argument: where the cursor is
+** term: terminal stuff (bleh)
+*/
 
 typedef struct		s_environment
 {
 	int				width;
 	int				height;
 	char			**words;
-	int				words_count;
+	int				word_count;
+	int				*highlighted_p;
+	int				current_word;
 	struct termios  term;
-	int				*highlighted;
-	int				current_argument;
 }					t_environment;
 
 int					main(int argc, char **argv);
-void				print_words();
+void				input_loop();
+void				handle_arrow_key(t_environment *env, int keycode);
+void				refresh_screen();
 void				clear_screen_from_text(t_environment *env);
+void				print_words(t_environment *env
+								, int single_column_width);
+
+/*
+** hack to store the environment somewhere
+** if argument is non-NULL, sets env
+** always returns the current env
+*/
+
 t_environment		*get_set_environment(t_environment *new_env);
 
 #endif

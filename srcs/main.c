@@ -6,62 +6,24 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/28 21:38:52 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/04/29 12:10:28 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void				print_selected(t_environment *env)
-{
-	clear_screen_from_text(env);
-	
-	exit(0);
-}
-
-void				wait_for_keypress()
-{
-	unsigned long	buffer;
-	t_environment   *env;
-
-	env = get_set_environment(NULL);
-	while (buffer = 0, (read(0, &buffer, 6)) != 0)
-	{
-		if (buffer == KEY_BACKSPACE)
-			ft_remove_nth_from_array(env->current_argument, (void**)env->words, &env->words_count);
-		else if (buffer == KEY_SPACE)
-		{
-			if (env->highlighted[env->current_argument] == 1)
-				env->highlighted[env->current_argument] = 0;
-			else
-				env->highlighted[env->current_argument] = 1;
-			env->current_argument = (env->current_argument == env->words_count - 1 ? 0 : env->current_argument + 1);
-		}
-		else if (buffer == KEY_ENTER)
-			print_selected(env);
-		print_words();
-	}
-}
-
 static void			set_signals(void)
 {
-	signal(SIGWINCH, print_words);
+	signal(SIGWINCH, refresh_screen);
 }
 
-static void			setup_terminal(void)
+static void			setup_terminal(t_environment *env)
 {
 	char			*terminal_name;
 
 	if (!(terminal_name = getenv("TERM")))
 	 	ft_putendl_exit("Error getting env->TERM", 1);
 	tgetent(NULL, terminal_name);
-}
-
-void				set_startup()
-{
-	t_environment	*env;
-
-	env = get_set_environment(NULL);
 	tcgetattr(0, &env->term);
 	env->term.c_lflag &= ~(ICANON);
 	env->term.c_lflag &= ~(ECHO);
@@ -71,23 +33,27 @@ void				set_startup()
 		exit (1);
 }
 
+static void			setup_environment(t_environment *env, int argc, char **argv)
+{
+	env->words = argv + 1;
+	env->word_count = argc - 1;
+	env->highlighted_p = (int*)malloc(sizeof(int) * (argc - 1));
+	ft_bzero(env->highlighted_p, argc - 1);
+	env->current_word = 0;
+	setup_terminal(env);
+}
+
 int					main(int argc, char **argv)
 {
 	t_environment	*env;
 
 	if (argc < 2)
 		return (-1);
-	setup_terminal();
 	env = malloc(sizeof(t_environment));
-	env->words = argv + 1;
-	env->current_argument = 0;
-	env->highlighted = (int*)malloc(sizeof(int) * (argc - 1));
-	ft_bzero(env->highlighted, argc - 1);
-	env->words_count = argc - 1;
+	setup_environment(env, argc, argv);
 	get_set_environment(env);
 	set_signals();
-	set_startup();
-	print_words();
-	wait_for_keypress();
+	refresh_screen();
+	input_loop();
 	return (0);
 }
