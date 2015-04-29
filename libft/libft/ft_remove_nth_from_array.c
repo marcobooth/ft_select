@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/28 14:28:16 by mbooth            #+#    #+#             */
-/*   Updated: 2015/04/29 15:28:55 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:41:44 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 */
 
 #include "libft.h"
-#include "stdio.h"
 
 void				ft_remove_nth_from_array(int nth, void *array
-											 , size_t width, int length)
+												, size_t width, int length)
 {
 	char			*to_remove;
 

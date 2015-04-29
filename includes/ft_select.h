@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:16:33 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:44:20 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct		s_environment
 	int				word_count;
 	int				*highlighted_p;
 	int				current_word;
-	struct termios  term;
+	struct termios	term;
 }					t_environment;
 
 int					main(int argc, char **argv);

@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 15:12:42 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:34:21 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:37:55 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void			return_highlighted_words(t_environment *env)
 	int				i;
 	int				print_space_p;
 
+	/* clear_screen_from_text(env); */
 	print_space_p = 0;
 	i = 0;
 	while (i < env->word_count)
