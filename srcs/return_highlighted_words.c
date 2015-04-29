@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_remove_nth_from_array.c                         :+:      :+:    :+:   */
+/*   return_highlighted_words.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/28 14:28:16 by mbooth            #+#    #+#             */
-/*   Updated: 2015/04/29 15:28:55 by tfleming         ###   ########.fr       */
+/*   Created: 2015/04/29 15:12:42 by tfleming          #+#    #+#             */
+/*   Updated: 2015/04/29 15:15:50 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-** width is the sizeof() for the things in the array
-*/
+#include "ft_select.h"
 
-#include "libft.h"
-#include "stdio.h"
-
-void				ft_remove_nth_from_array(int nth, void *array
-											 , size_t width, int length)
+void			return_highlighted_words(t_environment *env)
 {
-	char			*to_remove;
+	int				i;
+	int				print_space_p;
 
-	to_remove = (((char*)array) + nth * width);
-	ft_memmove((void*)to_remove, (void*)(to_remove + width)
-				, (length - nth - 1) * width);
+	print_space_p = 0;
+	i = 0;
+	while (i < env->word_count)
+	{
+		if (env->highlighted_p[i])
+		{
+			if (print_space_p)
+				ft_putchar(' ');
+			ft_putstr(env->words[i]);
+			print_space_p = 1;
+		}
+	}
 }

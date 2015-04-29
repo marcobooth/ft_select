@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 12:18:21 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:16:33 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,11 @@ typedef struct		s_environment
 
 int					main(int argc, char **argv);
 void				input_loop();
-void				handle_arrow_key(t_environment *env, int keycode);
 void				refresh_screen();
 void				clear_screen_from_text(t_environment *env);
 void				print_words(t_environment *env
 								, int single_column_width);
+void				return_highlighted_words(t_environment *env);
 
 /*
 ** hack to store the environment somewhere

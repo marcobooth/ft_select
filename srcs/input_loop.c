@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 12:18:48 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/04/29 15:26:31 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,22 @@ static void			select_deselect(t_environment *env)
 								? 0 : env->current_word + 1);
 }
 
-static void			print_selected(t_environment *env)
+static void			normalize_current_word(t_environment *env)
 {
-	int				i;
-	int				print_space_p;
+	if (env->current_word > env->word_count - 1)
+		env->current_word = 0;
+	if (env->current_word < 0)
+		env->current_word = env->word_count - 1;
+}
 
-	print_space_p = 0;
-	i = 0;
-	while (i < env->word_count)
-	{
-		if (env->highlighted_p[i])
-		{
-			if (print_space_p)
-				ft_putchar(' ');
-			ft_putstr(env->words[i]);
-			print_space_p = 1;
-		}
-	}
+void				handle_arrow_key(t_environment *env, int keycode)
+{
+	// TODO: handle right and left keys, make it loop correctly up and down
+	if (keycode == KEY_DOWN)
+		env->current_word++;
+	else if (keycode == KEY_UP)
+		env->current_word--;
+	normalize_current_word(env);
 }
 
 static void			remove_selected(t_environment *env)
@@ -50,10 +49,14 @@ static void			remove_selected(t_environment *env)
 	int				bleh;
 
 	bleh = 1;
-	ft_remove_nth_from_array(env->current_word, (void**)env->words
-								, sizeof(char*), &env->word_count);
-	ft_remove_nth_from_array(env->current_word, (void**)env->highlighted_p
-								, sizeof(int), &bleh);
+	ft_remove_nth_from_array(env->current_word, (void*)env->words
+								, sizeof(char*), env->word_count);
+	ft_remove_nth_from_array(env->current_word, (void*)env->highlighted_p
+								, sizeof(int), env->word_count);
+	env->word_count--;
+	normalize_current_word(env);
+	if (env->word_count <= 0)
+		exit(0);
 }
 
 void				input_loop()
@@ -71,7 +74,7 @@ void				input_loop()
 		else if (keycode == KEY_SPACE)
 			select_deselect(env);
 		else if (keycode == KEY_ENTER)
-			print_selected(env);
+			return_highlighted_words(env);
 		else if (keycode == KEY_DOWN || keycode == KEY_UP
 				 || keycode == KEY_LEFT || keycode == KEY_RIGHT)
 			handle_arrow_key(env, keycode);
