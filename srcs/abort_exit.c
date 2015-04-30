@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_set_environment.c                              :+:      :+:    :+:   */
+/*   abort_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbooth <mbooth@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/27 20:53:23 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/30 13:30:51 by mbooth           ###   ########.fr       */
+/*   Created: 2015/04/30 13:24:10 by mbooth            #+#    #+#             */
+/*   Updated: 2015/04/30 13:27:07 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_environment		*get_set_environment(t_environment *new_env)
+void				abort_exit(int signum)
 {
-	static t_environment	*stored_env = NULL;
+	t_environment	*env;
 
-	if (new_env)
-		stored_env = new_env;
-	return (stored_env);
+	env = get_set_environment(NULL);
+	clear_screen_from_text(env);
+	(void)signum;
+	ft_putstr(tgetstr("ve", NULL));
+	ft_putstr(tgetstr("cl", NULL));
+	exit (0);
 }

@@ -6,23 +6,11 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 20:03:45 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/04/30 13:31:43 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-void				abort_exit(int signum)
-{
-	t_environment	*env;
-
-	env = get_set_environment(NULL);
-	clear_screen_from_text(env);
-	(void)signum;
-	ft_putstr(tgetstr("ve", NULL));
-	ft_putstr(tgetstr("cl", NULL));
-	exit (0);
-}
 
 static void			set_signals(void)
 {
@@ -47,7 +35,7 @@ static void			setup_terminal(t_environment *env)
 	char			*terminal_name;
 
 	if (!(terminal_name = getenv("TERM")))
-	 	ft_putendl_exit("Error getting env->TERM", 1);
+		ft_putendl_exit("Error getting env->TERM", 1);
 	tgetent(NULL, terminal_name);
 	tcgetattr(0, &env->term);
 	env->term.c_lflag &= ~(ICANON);
@@ -68,7 +56,7 @@ static void			setup_environment(t_environment *env, int argc, char **argv)
 	setup_terminal(env);
 }
 
-void				restart()
+void				restart(void)
 {
 	t_environment	*env;
 

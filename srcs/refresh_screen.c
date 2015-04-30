@@ -36,15 +36,15 @@ static int			get_longest_word_length(t_environment *env)
 	while (i < env->word_count)
 	{
 		current_length = ft_strlen((char*)env->words[i]);
-			if (current_length > longest_word_length)
+		if (current_length > longest_word_length)
 			longest_word_length = current_length;
 		i++;
-		}
+	}
 	return (longest_word_length);
 }
 
 static int			will_fit_on_screen(t_environment *env
-									   , int single_column_width)
+									, int single_column_width)
 {
 	int				number_of_columns;
 
@@ -52,14 +52,14 @@ static int			will_fit_on_screen(t_environment *env
 	return ((number_of_columns * single_column_width) < env->width);
 }
 
-void				refresh_screen()
+void				refresh_screen(void)
 {
 	t_environment	*env;
 	int				single_column_width;
 
 	env = get_set_environment(NULL);
 	set_window_size(env);
-	clear_screen_from_text(env); // is not working
+	clear_screen_from_text(env);
 	single_column_width = get_longest_word_length(env) + 2;
 	if (will_fit_on_screen(env, single_column_width))
 		print_words(env, single_column_width);

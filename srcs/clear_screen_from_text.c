@@ -10,15 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
-
 /*
-** tgoto(tgetstr("cm", NULL), row, column)
-** ==> moves cursor to (row, column)
-**
-** tgetstr("ce", NULL)
-** ==> clears from where the cursor is to the end of that line
+**  tgoto(tgetstr("cm", NULL), row, column)
+**  moves cursor to (row, column)
+**  tgetstr("ce", NULL)
+**  clears from where the cursor is to the end of that line
 */
+
+#include "ft_select.h"
 
 void			clear_screen_from_text(t_environment *env)
 {

@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/04/29 15:16:29 by tfleming         ###   ########.fr        #
+#    Updated: 2015/04/30 13:26:39 by mbooth           ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -29,8 +29,8 @@ COMPILED =			main.o \
 					clear_screen_from_text.o \
 					print_words.o \
 					return_highlighted_words.o \
-					get_set_environment.o
-
+					get_set_environment.o \
+					abort_exit.o 
 all: $(NAME)
 
 $(NAME): $(COMPILED)

@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
-
 /*
-** input_loop waits for keypresses on call to read()
+** input_loop waits for keypresses on call to read
 */
+
+#include "ft_select.h"
 
 static void			select_deselect(t_environment *env)
 {
@@ -26,22 +26,47 @@ static void			select_deselect(t_environment *env)
 								? 0 : env->current_word + 1);
 }
 
-static void			normalize_current_word(t_environment *env)
+static void			handle_up_down(t_environment *env, int keycode)
 {
-	if (env->current_word > env->word_count - 1)
-		env->current_word = 0;
-	if (env->current_word < 0)
-		env->current_word = env->word_count - 1;
+	if (keycode == KEY_DOWN)
+	{
+		env->current_word++;
+		if (env->current_word > env->word_count - 1)
+			env->current_word = 0;
+	}
+	else if (keycode == KEY_UP)
+	{
+		env->current_word--;
+		if (env->current_word < 0)
+			env->current_word = env->word_count - 1;
+	}
 }
 
-void				handle_arrow_key(t_environment *env, int keycode)
+static void			handle_left_right(t_environment *env, int keycode)
 {
-	// TODO: handle right and left keys, make it loop correctly up and down
-	if (keycode == KEY_DOWN)
-		env->current_word++;
-	else if (keycode == KEY_UP)
-		env->current_word--;
-	normalize_current_word(env);
+	int				new_current_word;
+	int				position_from_top;
+
+	position_from_top = env->current_word % env->height;
+	if (keycode == KEY_LEFT)
+	{
+		new_current_word = env->current_word - env->height;
+		if (new_current_word < 0)
+			env->current_word = new_current_word
+			+ (env->word_count / env->height) * env->height
+			+ (position_from_top < env->height - env->word_count % env->height)
+			* env->height;
+		else
+			env->current_word = new_current_word;
+	}
+	else if (keycode == KEY_RIGHT)
+	{
+		new_current_word = env->current_word + env->height;
+		if (new_current_word >= env->word_count)
+			env->current_word = position_from_top;
+		else
+			env->current_word = new_current_word;
+	}
 }
 
 static void			remove_selected(t_environment *env)
@@ -54,15 +79,14 @@ static void			remove_selected(t_environment *env)
 	ft_remove_nth_from_array(env->current_word, (void*)env->highlighted_p
 								, sizeof(int), env->word_count);
 	env->word_count--;
-	normalize_current_word(env);
 	if (env->word_count <= 0)
-		exit(0);
+		abort_exit(0);
 }
 
-void				input_loop()
+void				input_loop(void)
 {
 	unsigned long	keycode;
-	t_environment   *env;
+	t_environment	*env;
 	int				should_refresh;
 
 	env = get_set_environment(NULL);
@@ -75,9 +99,10 @@ void				input_loop()
 			select_deselect(env);
 		else if (keycode == KEY_ENTER)
 			return_highlighted_words(env);
-		else if (keycode == KEY_DOWN || keycode == KEY_UP
-				 || keycode == KEY_LEFT || keycode == KEY_RIGHT)
-			handle_arrow_key(env, keycode);
+		else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
+			handle_left_right(env, keycode);
+		else if (keycode == KEY_DOWN || keycode == KEY_UP)
+			handle_up_down(env, keycode);
 		else if (keycode == KEY_ESCAPE)
 			abort_exit(0);
 		else
