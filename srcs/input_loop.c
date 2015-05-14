@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/15 00:01:26 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 00:09:45 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void				input_loop(void)
 			handle_left_right(env, keycode);
 		else if (keycode == KEY_DOWN || keycode == KEY_UP)
 			handle_up_down(env, keycode);
-		else if (keycode == KEY_ESCAPE)
+		else if (keycode == KEY_ESCAPE || keycode == 'q')
 			abort_exit(0);
 		else
 			should_refresh = 0;
