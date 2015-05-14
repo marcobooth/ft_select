@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_set_environment.c                              :+:      :+:    :+:   */
+/*   ft_putendl_fd_exit.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/27 20:53:23 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:46:16 by tfleming         ###   ########.fr       */
+/*   Created: 2015/05/14 23:02:56 by tfleming          #+#    #+#             */
+/*   Updated: 2015/05/14 23:04:57 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_select.h"
+#include "libft.h"
 
-t_environment		*get_set_environment(t_environment *new_env)
+void			ft_putendl_fd_exit(char const *source, int fd, int exit_code)
 {
-	static t_environment	*stored_env = NULL;
-
-	if (new_env)
-		stored_env = new_env;
-	return (stored_env);
+	ft_putendl_fd(source, fd);
+	exit(exit_code);
 }
+

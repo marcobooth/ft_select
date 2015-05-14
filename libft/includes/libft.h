@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/11/04 12:34:27 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 15:15:04 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/14 23:04:35 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ void				ft_putstrn_fd(char const *source, size_t max_length
 void				ft_putendl(char const *source);
 void				ft_putendl_fd(char const *source, int file_descriptor);
 void				ft_putendl_exit(char const *source, int exit_code);
+void				ft_putendl_fd_exit(char const *source, int fd
+										, int exit_code);
 void				ft_putnbr(int number);
 void				ft_putnbr_justify_right(int number
 											, size_t total

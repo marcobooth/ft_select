@@ -6,19 +6,23 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 15:12:42 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 19:20:13 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/05/14 23:36:23 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+/*
+** ve: return the cursor to normal
+** cl: clear the entire screen and position the cursor at the upper left corner
+*/
 
 void			return_highlighted_words(t_environment *env)
 {
 	int				i;
 	int				print_space_p;
 
-	clear_screen_from_text(env);
-	ft_putstr(tgetstr("cl", NULL));
+	abort_no_exit(0);
 	print_space_p = 0;
 	i = 0;
 	while (i < env->word_count)
@@ -32,6 +36,5 @@ void			return_highlighted_words(t_environment *env)
 		}
 		i++;
 	}
-	ft_putstr(tgetstr("ve", NULL));
 	exit(0);
 }

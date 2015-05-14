@@ -6,7 +6,7 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/04/30 13:26:39 by mbooth           ###   ########.fr        #
+#    Updated: 2015/05/14 23:47:34 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -21,16 +21,18 @@ LIBFT =         	libft
 LIBFT_INCLUDES =	$(LIBFT)/includes
 
 INC_FLAGS =         -I $(INCLUDES) -I $(LIBFT_INCLUDES)
-LIB_FLAGS =         -L $(LIBFT) -lft -ltermcap
+LIB_FLAGS =         -L $(LIBFT) -lft -ltermcap\
 
 COMPILED =			main.o \
 					input_loop.o \
 					refresh_screen.o \
 					clear_screen_from_text.o \
+					get_longest_word_length.o \
 					print_words.o \
 					return_highlighted_words.o \
 					get_set_environment.o \
-					abort_exit.o 
+					abort_exit.o
+
 all: $(NAME)
 
 $(NAME): $(COMPILED)

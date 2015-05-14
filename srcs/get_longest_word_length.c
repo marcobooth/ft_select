@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_set_environment.c                              :+:      :+:    :+:   */
+/*   get_longest_word_length.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/27 20:53:23 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:46:16 by tfleming         ###   ########.fr       */
+/*   Created: 2015/05/14 23:32:16 by tfleming          #+#    #+#             */
+/*   Updated: 2015/05/14 23:35:10 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_environment		*get_set_environment(t_environment *new_env)
+int			get_longest_word_length(t_environment *env)
 {
-	static t_environment	*stored_env = NULL;
+	int				longest_word_length;
+	int				current_length;
+	int				i;
 
-	if (new_env)
-		stored_env = new_env;
-	return (stored_env);
+	longest_word_length = 0;
+	i = 0;
+	while (i < env->word_count)
+	{
+		current_length = ft_strlen((char*)env->words[i]);
+		if (current_length > longest_word_length)
+			longest_word_length = current_length;
+		i++;
+	}
+	return (longest_word_length);
 }

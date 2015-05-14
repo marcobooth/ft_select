@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 19:15:27 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/05/14 23:48:40 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@ static void			select_deselect(t_environment *env)
 
 static void			handle_up_down(t_environment *env, int keycode)
 {
+/* <<<<<<< Updated upstream */
+/* ======= */
+/* 	if (env->current_word > env->word_count - 1) */
+/* 		env->current_word = 0; */
+/* 	if (env->current_word < 0) */
+/* 		env->current_word = env->word_count - 1; */
+/* } */
+
+/* void				handle_arrow_key(t_environment *env, int keycode) */
+/* { */
+/* >>>>>>> Stashed changes */
 	if (keycode == KEY_DOWN)
 	{
 		env->current_word++;
@@ -71,9 +82,6 @@ static void			handle_left_right(t_environment *env, int keycode)
 
 static void			remove_selected(t_environment *env)
 {
-	int				bleh;
-
-	bleh = 1;
 	ft_remove_nth_from_array(env->current_word, (void*)env->words
 								, sizeof(char*), env->word_count);
 	ft_remove_nth_from_array(env->current_word, (void*)env->highlighted_p
@@ -108,6 +116,6 @@ void				input_loop(void)
 		else
 			should_refresh = 0;
 		if (should_refresh)
-			refresh_screen();
+			refresh_screen(0);
 	}
 }

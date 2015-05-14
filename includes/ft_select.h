@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/04/29 19:42:15 by mbooth           ###   ########.fr       */
+/*   Updated: 2015/05/14 23:34:04 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,19 @@ typedef struct		s_environment
 	int				word_count;
 	int				*highlighted_p;
 	int				current_word;
+	int				single_column_width;
 	struct termios	term;
 }					t_environment;
 
 int					main(int argc, char **argv);
-void				input_loop();
-void				refresh_screen();
+void				input_loop(void);
+void				refresh_screen(int signum);
 void				clear_screen_from_text(t_environment *env);
-void				print_words(t_environment *env
-								, int single_column_width);
+int					get_longest_word_length(t_environment *env);
+void				print_words(t_environment *env);
 void				return_highlighted_words(t_environment *env);
-void				restart();
+void				abort_no_exit(int signum);
+void				abort_exit(int signum);
 
 /*
 ** hack to store the environment somewhere
@@ -97,6 +99,5 @@ void				restart();
 */
 
 t_environment		*get_set_environment(t_environment *new_env);
-void				abort_exit(int signum);
 
 #endif
