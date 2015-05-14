@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:48:40 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 00:01:26 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,6 @@ static void			select_deselect(t_environment *env)
 
 static void			handle_up_down(t_environment *env, int keycode)
 {
-/* <<<<<<< Updated upstream */
-/* ======= */
-/* 	if (env->current_word > env->word_count - 1) */
-/* 		env->current_word = 0; */
-/* 	if (env->current_word < 0) */
-/* 		env->current_word = env->word_count - 1; */
-/* } */
-
-/* void				handle_arrow_key(t_environment *env, int keycode) */
-/* { */
-/* >>>>>>> Stashed changes */
 	if (keycode == KEY_DOWN)
 	{
 		env->current_word++;
@@ -65,10 +54,12 @@ static void			handle_left_right(t_environment *env, int keycode)
 		if (new_current_word < 0)
 			env->current_word = new_current_word
 			+ (env->word_count / env->height) * env->height
-			+ (position_from_top < env->height - env->word_count % env->height)
-			* env->height;
+			+ (position_from_top < env->height
+				- env->word_count % env->height) * env->height;
 		else
 			env->current_word = new_current_word;
+		if (env->current_word >= env->word_count)
+			env->current_word -= env->height;
 	}
 	else if (keycode == KEY_RIGHT)
 	{
