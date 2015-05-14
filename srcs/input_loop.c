@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 10:51:00 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/15 00:09:45 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 00:23:16 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ static void			remove_selected(t_environment *env)
 	env->word_count--;
 	if (env->word_count <= 0)
 		abort_exit(0);
+	if (env->current_word >= env->word_count)
+		env->current_word = 0;
 }
 
 void				input_loop(void)
