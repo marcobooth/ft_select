@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:17 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:43:28 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 20:02:39 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int					main(int argc, char **argv)
 	t_environment	*env;
 
 	if (argc < 2)
-		return (-1);
+		ft_putendl_fd_exit("Usage: ft_select [parameters]", 2, 1);
 	env = malloc(sizeof(t_environment));
 	setup_environment(env, argc, argv);
 	get_set_environment(env);
