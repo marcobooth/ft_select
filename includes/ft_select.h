@@ -6,7 +6,7 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:34:04 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 20:39:04 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void				abort_no_exit(int signum);
 void				abort_exit(int signum);
 
 /*
-** hack to store the environment somewhere
+** hack to store the environment somewhere (globals are not allowed)
 ** if argument is non-NULL, sets env
 ** always returns the current env
 */

@@ -6,11 +6,17 @@
 /*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 20:53:23 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/14 23:46:16 by tfleming         ###   ########.fr       */
+/*   Updated: 2015/05/15 20:39:05 by tfleming         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+/*
+** hack to store the environment somewhere (globals are not allowed)
+** if argument is non-NULL, sets env
+** always returns the current env
+*/
 
 t_environment		*get_set_environment(t_environment *new_env)
 {
