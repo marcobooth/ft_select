@@ -6,14 +6,14 @@
 #    By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/04 17:52:57 by tfleming          #+#    #+#              #
-#    Updated: 2015/05/14 23:47:34 by tfleming         ###   ########.fr        #
+#    Updated: 2015/05/15 19:47:33 by tfleming         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
 NAME =				ft_select
 
 CC =				gcc
-CFLAGS =			-Wall -Werror -Wextra -g -O0
+CFLAGS =			-Wall -Werror -Wextra
 
 SRCS =				srcs
 INCLUDES =			includes
