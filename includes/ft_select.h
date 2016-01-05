@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_select.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tfleming <tfleming@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mbooth <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/04/27 13:39:07 by tfleming          #+#    #+#             */
-/*   Updated: 2015/05/15 20:39:04 by tfleming         ###   ########.fr       */
+/*   Created: 2016/01/05 11:57:19 by mbooth            #+#    #+#             */
+/*   Updated: 2016/01/05 11:57:25 by mbooth           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@
 */
 
 # include "libft.h"
-# include "ft_list.h"
-# include "ft_printf.h"
 # include <termios.h>
 # include <term.h>
 # include <sys/ioctl.h>
