@@ -44,5 +44,5 @@ void				abort_no_exit(int signum)
 void				abort_exit(int signum)
 {
 	abort_no_exit(signum);
-	exit (0);
+	exit(0);
 }

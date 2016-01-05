@@ -88,12 +88,11 @@ void				input_loop(void)
 {
 	unsigned long	keycode;
 	t_environment	*env;
-	int				should_refresh;
 
 	env = get_set_environment(NULL);
-	while (keycode = 0, (read(0, &keycode, 6)) != 0)
+	keycode = 0;
+	while (read(0, &keycode, 6) != 0)
 	{
-		should_refresh = 1;
 		if (keycode == KEY_BACKSPACE || keycode == KEY_DELETE)
 			remove_selected(env);
 		else if (keycode == KEY_SPACE)
@@ -107,8 +106,8 @@ void				input_loop(void)
 		else if (keycode == KEY_ESCAPE || keycode == 'q')
 			abort_exit(0);
 		else
-			should_refresh = 0;
-		if (should_refresh)
-			refresh_screen(0);
+			continue;
+		refresh_screen(0);
+		keycode = 0;
 	}
 }

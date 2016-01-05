@@ -55,7 +55,7 @@ static void			setup_terminal(t_environment *env)
 	env->term.c_cc[VMIN] = 1;
 	env->term.c_cc[VTIME] = 0;
 	if (tcsetattr(0, TCSADRAIN, &env->term) == -1)
-		exit (1);
+		exit(1);
 	ft_putstr_fd(tgetstr("ti", NULL), 2);
 	ft_putstr_fd(tgetstr("vi", NULL), 2);
 }
